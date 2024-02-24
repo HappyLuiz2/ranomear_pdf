@@ -4,6 +4,8 @@
 
 ```
 pip install pdfplumber
+```
+```
 pip install openpyxl
 ```
 Utilize o main.py
