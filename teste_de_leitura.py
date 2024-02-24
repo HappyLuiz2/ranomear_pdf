@@ -1,6 +1,7 @@
 import pdfplumber
 import ast
 
+file_test = r'pdf_test.pdf'
 locais_file = 'nomes_localidade.txt'
 
 class extracao():
@@ -8,17 +9,21 @@ class extracao():
     def __init__(self, arquivo):
         """armazenamento do dados iniciais"""
         self.arquivo = arquivo
-        self.texto = ''
-        self.locais = ''
-        self.dados_pdf = []
-        self.excel = []
         self.leitura_arquivos()
-        self.extracao_dados()
 
     def leitura_arquivos(self):
         """leitura de pdf e bloco"""
         with pdfplumber.open(self.arquivo) as pdf:
             page = pdf.pages[0]
             texto = page.extract_text()
-            self.texto = texto.split('\n')
-            print(self.texto)
+            texto = texto.split('\n')
+            print(texto)
+            data = texto[7]
+            print('\nData:', data)
+            nota = texto[2]
+            nota = nota[2:]
+            nota = nota.replace(' ', '') + '°'
+            print('\nNF -',nota)
+
+
+test = extracao(file_test)
